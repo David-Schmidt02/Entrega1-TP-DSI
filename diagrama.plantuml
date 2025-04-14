@@ -1,0 +1,80 @@
+@startuml trabajoPractico
+
+'Clase padre de contribuyente y visualizador
+
+class Visitante {
+    registrado: bool
+}
+
+class Administrador extends Visitante {
+    
+}
+
+class Contribuyente extends Visitante {
+    nombre: string
+    apellido: string
+    edad: int
+    validarEdad()
+}
+
+class Visualizador extends Visitante {
+
+}
+
+class Coleccion {
+    fuente_coleccion
+    titulo_coleccion: string
+    descripcion_coleccion: string
+    criteriosPertenencia[]: string
+    hechos[]: hecho
+}
+' DUDA => Criterios: lista de valores/atributos/lo que sea/ o clase
+' Se diagraman las fuentes en el DC? o podemos dejarlo como un atributo
+' "Obtención de hechos en lote por archivos CSV, implicancias en el diagrama de clase
+' 
+
+class Hecho {
+    titulo: string
+    descripcion: string
+    categoria: string 
+    latitud: 
+    longitud:
+    fechaAcontecimiento: int
+    fechaCarga
+    origen: Origen
+
+    elegibleSegun()
+}
+
+class HechoMultimedia extends Hecho {
+    contenidoMultimedia[] 
+}
+
+class HechoTextual extends Hecho {
+    cuerpo: string
+}
+
+class SolicitudEliminacion {
+    hecho : Hecho
+    justificacion: string
+    estado:
+
+}
+
+enum Estado {
+    Aceptada
+    Pendiente
+    Rechazada
+}
+enum Origen {
+    Manual 
+    Dataset
+    Contribuyente
+}
+
+Hecho -- Origen
+Hecho --left SolicitudEliminacion
+Hecho --right Coleccion
+SolicitudEliminacion -- Estado
+@enduml
+
