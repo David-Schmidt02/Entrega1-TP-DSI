@@ -37,13 +37,14 @@ class Hecho {
     titulo: string
     descripcion: string
     categoria: string 
-    latitud: 
-    longitud:
+    latitud: double
+    longitud: double
     fechaAcontecimiento: int
-    fechaCarga
+    fechaCarga: Date?
     origen: Origen
 
     elegibleSegun()
+    estaRepetido()
 }
 
 class HechoMultimedia extends Hecho {
