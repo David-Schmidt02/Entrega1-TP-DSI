@@ -40,8 +40,8 @@ class Hecho {
     latitud: double
     longitud: double
     fechaAcontecimiento: int
-    fechaCarga: Date?
-    origen: Origen
+    fechaCarga: Date
+    origen: Origen_Fuente
 
     elegibleSegun()
     estaRepetido()
@@ -58,7 +58,7 @@ class HechoTextual extends Hecho {
 class SolicitudEliminacion {
     hecho : Hecho
     justificacion: string
-    estado:
+    estado: Estado
 
 }
 
@@ -67,13 +67,13 @@ enum Estado {
     Pendiente
     Rechazada
 }
-enum Origen {
-    Manual 
-    Dataset
-    Contribuyente
+enum Origen_Fuente {
+    Estatica 
+    Dinamica
+    Proxy
 }
 
-Hecho -- Origen
+Hecho -- Origen_Fuente
 Hecho --left SolicitudEliminacion
 Hecho --right Coleccion
 SolicitudEliminacion -- Estado
