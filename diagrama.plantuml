@@ -75,6 +75,11 @@ class CriterioFecha extends CriterioPertenencia {
     cumpleConCriterio(hecho: Hecho) : bool
 }
 
+class CriterioOrigen extends CriterioPertenencia {
+    origen: Origen_Fuente
+    cumpleConCriterio(hecho: Hecho) : bool
+}
+
 abstract class Hecho {
     titulo: string
     descripcion: string
