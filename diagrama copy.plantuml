@@ -3,7 +3,8 @@
 
 'Clase padre de contribuyente y visualizador
 
-abstract Visitante {
+class Visitante {
+    registrado: bool
 }
 
 class Administrador extends Visitante {
@@ -15,7 +16,6 @@ class Contribuyente extends Visitante {
     nombre: string
     apellido: string
     edad: int
-    
     validarEdad()
     subirHecho(hecho: Hecho)
     solicitarEliminar(hecho: Hecho)
@@ -34,7 +34,7 @@ class Coleccion {
     agregarHecho(hecho: Hecho): void
 }
 
-abstract Fuente {
+class Fuente {
     hechos: <List> Hecho   
 }
 
@@ -159,7 +159,7 @@ enum Origen_Fuente {
 ' Hecho
 Hecho -up-> Etiqueta
 Hecho -down-> Origen_Fuente
-Hecho <--left SolicitudEliminacion
+Hecho <--up- SolicitudEliminacion
 Hecho *--right Coleccion
 Hecho -up-> Ubicacion
 Hecho ---down> CriterioPertenencia
@@ -172,6 +172,7 @@ HechoMultimedia -down-> Formato
 Contribuyente -- Hecho
 Contribuyente -- SolicitudEliminacion
 Administrador -down- SolicitudEliminacion  
+Visitante <|--down- Administrador
 'Administrador -- Coleccion
 
 ' Criterios de pertenencia
