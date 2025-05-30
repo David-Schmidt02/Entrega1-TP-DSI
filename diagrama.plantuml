@@ -6,24 +6,15 @@
 abstract Visitante {
 }
 
-class Administrador extends Visitante {
-    atenderSolicitud(solicitud: SolicitudEliminacion)
-    crearColeccion()
-}
-
 class Contribuyente extends Visitante {
     nombre: string
     apellido: string
     edad: int
-    
+    contribuyente: Contribuyente
     validarEdad()
-    subirHecho(hecho: Hecho)
-    solicitarEliminar(hecho: Hecho)
+
 }
 
-class Visualizador extends Visitante {
-    
-}
 
 class Coleccion {
     fuenteColeccion : Fuente
@@ -35,7 +26,6 @@ class Coleccion {
 }
 
 abstract Fuente {
-    hechos: <List> Hecho   
 }
 
 class Fuente_estatica extends Fuente {
@@ -64,7 +54,7 @@ class CriterioDescripcion {
 }
 
 class CriterioCategoria {
-    categoria: string
+    categoria: Categoria
     cumpleConCriterio(hecho: Hecho) : bool
 }
 
@@ -87,7 +77,7 @@ class CriterioOrigen {
 abstract class Hecho {
     titulo: string
     descripcion: string
-    categoria: string 
+    categoria: Categoria 
     ubicacion: Ubicacion
     fechaAcontecimiento: LocalDate
     fechaCarga: LocalDate
@@ -96,6 +86,10 @@ abstract class Hecho {
     etiquetas: <List> Etiqueta
 
     estaRepetido()
+}
+
+class Categoria {
+    descripcion: string
 }
 
 class Etiqueta {
@@ -157,12 +151,12 @@ enum Origen_Fuente {
 }
 
 ' Hecho
+Hecho -up-> Categoria
 Hecho -up-> Etiqueta
 Hecho -down-> Origen_Fuente
 Hecho <--left SolicitudEliminacion
 Hecho *--right Coleccion
 Hecho -up-> Ubicacion
-Hecho ---down> CriterioPertenencia
 
 
 Coleccion --> Fuente
