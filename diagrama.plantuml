@@ -10,7 +10,6 @@ class Contribuyente extends Visitante {
     nombre: string
     apellido: string
     edad: int
-    contribuyente: Contribuyente
     validarEdad()
 
 }
@@ -84,6 +83,8 @@ abstract class Hecho {
     origen: Origen_Fuente
     estaOculto : bool
     etiquetas: <List> Etiqueta
+    contribuyente: Contribuyente
+
 
     estaRepetido()
 }
